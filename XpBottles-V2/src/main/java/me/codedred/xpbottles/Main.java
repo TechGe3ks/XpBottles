@@ -2,6 +2,7 @@ package me.codedred.xpbottles;
 
 import java.lang.reflect.Method;
 
+import me.codedred.xpbottles.models.ExpBottle;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,23 +25,13 @@ import me.codedred.xpbottles.listeners.ThrownBottle;
 import me.codedred.xpbottles.listeners.VanillaBottle;
 import me.codedred.xpbottles.models.ExperienceManager;
 import me.codedred.xpbottles.models.MoneyAPI;
-import me.codedred.xpbottles.versions.VersionData;
-import me.codedred.xpbottles.versions.Version_1_10_R1;
-import me.codedred.xpbottles.versions.Version_1_11_R1;
-import me.codedred.xpbottles.versions.Version_1_12_R1;
-import me.codedred.xpbottles.versions.Version_1_13_R2;
-import me.codedred.xpbottles.versions.Version_1_14_R1;
-import me.codedred.xpbottles.versions.Version_1_15_R1;
-import me.codedred.xpbottles.versions.Version_1_16_R1;
-import me.codedred.xpbottles.versions.Version_1_8_R3;
-import me.codedred.xpbottles.versions.Version_1_9_R2;
 
 public class Main extends JavaPlugin {
 	
 	public Config cfg;
 	public Messages msg;
 	
-	public VersionData bottle;
+	public ExpBottle bottle;
 	public MoneyAPI eco;
 	public ExperienceManager manager;
 	private String sversion;
@@ -143,25 +134,8 @@ public class Main extends JavaPlugin {
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }
-        
-        if (sversion.equals("v1_8_R3"))
-            bottle = new Version_1_8_R3(this);
-        else if (sversion.equals("v1_9_R2"))
-            bottle = new Version_1_9_R2(this);
-        else if (sversion.equals("v1_10_R1"))
-            bottle = new Version_1_10_R1(this);
-        else if (sversion.equals("v1_11_R1"))
-            bottle = new Version_1_11_R1(this);
-        else if (sversion.equals("v1_12_R1"))
-            bottle = new Version_1_12_R1(this);
-        else if (sversion.equals("v1_13_R2"))
-            bottle = new Version_1_13_R2(this);
-        else if (sversion.equals("v1_14_R1"))
-            bottle = new Version_1_14_R1(this);
-        else if (sversion.equals("v1_15_R1"))
-            bottle = new Version_1_15_R1(this);
-        else if (sversion.equals("v1_16_R1"))
-            bottle = new Version_1_16_R1(this);
+
+        bottle = new ExpBottle(this);
 
         return bottle != null;
     }
